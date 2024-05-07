@@ -9,6 +9,12 @@
         name: nginx
         state: present
 
+    - name: Install apache2-utils and create password file
+      shell:
+        cmd: |
+          apt install -y apache2-utils
+          htpasswd -b -c /etc/nginx/.htpasswd admin nginx_two_pass
+
     - name: Start Nginx
       service:
         name: nginx
@@ -21,7 +27,7 @@
           cp /vagrant/public/login_two.html /usr/share/nginx/html/login.html
           cp /vagrant/app.conf /etc/nginx/sites-available/default
 
-    - name: Restart Nginx
+    - name: Reload Nginx
       service:
         name: nginx
-        state: restarted
+        state: reloaded
