@@ -1,0 +1,27 @@
+---
+- name: 'Nginx Two'
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
+
+    - name: Copy Website Files
+      shell:
+        cmd: |
+          cp -R /vagrant/public/mediplus/* /usr/share/nginx/html
+          cp /vagrant/public/login_two.html /usr/share/nginx/html/login.html
+          cp /vagrant/app.conf /etc/nginx/sites-available/default
+
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
