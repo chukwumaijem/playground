@@ -1,33 +1,40 @@
 ---
-- name: 'Nginx Two'
+- name: 'Apache Two'
   hosts: all
   become: true
 
   tasks:
-    - name: Install Nginx
+    - name: Install Apache
       apt:
-        name: nginx
+        name: apache2
         state: present
 
-    - name: Install apache2-utils and create password file
+    - name: Create password file
       shell:
         cmd: |
-          apt install -y apache2-utils
-          htpasswd -b -c /etc/nginx/.htpasswd admin nginx_two_pass
+          htpasswd -b -c /etc/apache2/.htpasswd admin site_two_pass
 
-    - name: Start Nginx
+    - name: Start Apache
       service:
-        name: nginx
+        name: apache2
         state: started
 
-    - name: Copy Website Files
+    - name: Copy website files
       shell:
         cmd: |
-          cp -R /vagrant/public/mediplus/* /usr/share/nginx/html
-          cp /vagrant/public/login_two.html /usr/share/nginx/html/login.html
-          cp /vagrant/app.conf /etc/nginx/sites-available/default
+          mkdir -p /var/www/html/example.com
+          cp -R /vagrant/public/mediplus/* /var/www/html/example.com
+          cp /vagrant/public/login_two.html /var/www/html/example.com/login.html
+          cp /vagrant/app.conf /etc/apache2/sites-available/example.com.conf
 
-    - name: Reload Nginx
+    - name: Enable website
+      shell:
+        cmd: |
+          a2dissite 000-default.conf
+          a2ensite example.com
+          systemctl reload apache2
+
+    - name: Reload Apache2
       service:
-        name: nginx
+        name: apache2
         state: reloaded
