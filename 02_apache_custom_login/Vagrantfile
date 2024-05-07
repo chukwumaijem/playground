@@ -1,12 +1,12 @@
 Vagrant.configure("2") do |config|
-  config.vm.define "ncl_one" do |app_one|
+  config.vm.define "apache_one" do |app_one|
     app_one.vm.box = "ubuntu/jammy64"
-    app_one.vm.hostname = "nginx-one"
+    app_one.vm.hostname = "apache-one"
     app_one.vm.synced_folder "../public", "/vagrant/public"
     app_one.vm.network "forwarded_port", guest: 80, host: 8001
   
     app_one.vm.provider "virtualbox" do |vb|
-      vb.name = "ncl_one"
+      vb.name = "apache_one"
       vb.memory = "1024"
       vb.linked_clone = true
       vb.check_guest_additions = false
@@ -17,14 +17,14 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.define "ncl_two" do |app_two|
+  config.vm.define "apache_two" do |app_two|
     app_two.vm.box = "ubuntu/jammy64"
-    app_two.vm.hostname = "nginx-two"
+    app_two.vm.hostname = "apache-two"
     app_two.vm.synced_folder "../public", "/vagrant/public"
     app_two.vm.network "forwarded_port", guest: 80, host: 8002
   
     app_two.vm.provider "virtualbox" do |vb|
-      vb.name = "ncl_two"
+      vb.name = "apache_two"
       vb.memory = "1024"
       vb.linked_clone = true
       vb.check_guest_additions = false

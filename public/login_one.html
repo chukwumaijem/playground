@@ -183,60 +183,34 @@
         transform: scale(1.5);
       }
     </style>
-
-    <script type="text/javascript">
-      async function reloadWithHeader() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const base64Cred = btoa(`${username}:${password}`);
-
-        try {
-          const resp = await new Promise((resolve, reject) => {
-            const req = new XMLHttpRequest();
-            req.open('GET', window.location.href);
-            req.setRequestHeader('Authorization', `Basic ${base64Cred}`);
-            req.onerror = () => reject({ status: req.status });
-            req.onload = () => resolve(req);
-            req.send();
-          });
-
-          if (resp.status === 200) {
-            //
-          } else {
-            throw new Error();
-          }
-        } catch (error) {
-          alert('Incorrect username and/or password.');
-        }
-        return false;
-      }
-    </script>
   </head>
 
   <body>
     <div class="container">
       <div class="screen">
         <div class="screen__content">
-          <form class="login" onsubmit="reloadWithHeader(event)">
+          <form class="login" method="POST" action="/dologin.html">
             <div class="login__field">
               <i class="login__icon fas fa-user"></i>
               <input
                 type="text"
-                id="username"
+                name="httpd_username"
                 class="login__input"
                 placeholder="User name / Email"
+                value=""
               />
             </div>
             <div class="login__field">
               <i class="login__icon fas fa-lock"></i>
               <input
-                id="password"
+                name="httpd_password"
                 type="password"
                 class="login__input"
                 placeholder="Password"
+                value=""
               />
             </div>
-            <button class="button login__submit">
+            <button class="button login__submit" type="submit">
               <span class="button__text">Log In Now</span>
               <i class="button__icon fas fa-chevron-right"></i>
             </button>

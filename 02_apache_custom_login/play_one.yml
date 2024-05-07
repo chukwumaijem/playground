@@ -27,14 +27,25 @@
           cp /vagrant/public/login_one.html /var/www/html/example.com/login.html
           cp /vagrant/app.conf /etc/apache2/sites-available/example.com.conf
 
-    - name: Enable website
+    - name: Enable Modules
       shell:
         cmd: |
-          a2dissite 000-default.conf
-          a2ensite example.com
-          systemctl reload apache2
+          a2enmod session
+          a2enmod session_cookie
+          a2enmod session_crypto
+          a2enmod auth_form
+          a2enmod request
 
-    - name: Reload Apache2
+    - name: Enable new site
+      shell: /usr/sbin/a2ensite example.com
+      notify: Reload Apache
+
+    - name: Disable default Apache site
+      shell: /usr/sbin/a2dissite 000-default.conf
+      notify: Reload Apache
+
+  handlers:
+    - name: Reload Apache
       service:
         name: apache2
         state: reloaded
