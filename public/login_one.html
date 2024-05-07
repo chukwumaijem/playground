@@ -6,8 +6,6 @@
     <title>Login Form One</title>
 
     <style>
-      @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
       * {
         box-sizing: border-box;
         margin: 0;
@@ -185,16 +183,46 @@
         transform: scale(1.5);
       }
     </style>
+
+    <script type="text/javascript">
+      async function reloadWithHeader() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const base64Cred = btoa(`${username}:${password}`);
+
+        try {
+          const resp = await new Promise((resolve, reject) => {
+            const req = new XMLHttpRequest();
+            req.open('GET', window.location.href);
+            req.setRequestHeader('Authorization', `Basic ${base64Cred}`);
+            req.onerror = () => reject({ status: req.status });
+            req.onload = () => resolve(req);
+            req.send();
+          });
+
+          if (resp.status === 200) {
+            //
+          } else {
+            throw new Error();
+          }
+        } catch (error) {
+          alert('Incorrect username and/or password.');
+        }
+        return false;
+      }
+    </script>
   </head>
+
   <body>
     <div class="container">
       <div class="screen">
         <div class="screen__content">
-          <form class="login">
+          <form class="login" onsubmit="reloadWithHeader(event)">
             <div class="login__field">
               <i class="login__icon fas fa-user"></i>
               <input
                 type="text"
+                id="username"
                 class="login__input"
                 placeholder="User name / Email"
               />
@@ -202,6 +230,7 @@
             <div class="login__field">
               <i class="login__icon fas fa-lock"></i>
               <input
+                id="password"
                 type="password"
                 class="login__input"
                 placeholder="Password"
@@ -212,15 +241,8 @@
               <i class="button__icon fas fa-chevron-right"></i>
             </button>
           </form>
-          <div class="social-login">
-            <h3>log in via</h3>
-            <div class="social-icons">
-              <a href="#" class="social-login__icon fab fa-instagram"></a>
-              <a href="#" class="social-login__icon fab fa-facebook"></a>
-              <a href="#" class="social-login__icon fab fa-twitter"></a>
-            </div>
-          </div>
         </div>
+
         <div class="screen__background">
           <span
             class="screen__background__shape screen__background__shape4"
