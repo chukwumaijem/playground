@@ -183,6 +183,17 @@
         transform: scale(1.5);
       }
     </style>
+
+    <script type="text/javascript">
+      window.onload = function () {
+        let params = new URL(document.location).searchParams;
+        let error = params.get('error');
+        if (error === 'invalid_login') {
+          alert('Invalid username or password');
+          // add error class to inputs if preferred
+        }
+      };
+    </script>
   </head>
 
   <body>
