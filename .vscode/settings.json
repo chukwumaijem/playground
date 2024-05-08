@@ -5,6 +5,8 @@
     "ensite",
     "htpasswd",
     "inance",
-    "mediplus"
+    "mediplus",
+    "Virtualmin",
+    "Webmin"
   ]
 }
