@@ -35,6 +35,7 @@
           a2enmod session_crypto
           a2enmod auth_form
           a2enmod request
+          a2enmod macro          
 
     - name: Enable new site
       shell: /usr/sbin/a2ensite example.com
