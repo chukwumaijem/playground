@@ -1,8 +1,14 @@
 {
   "cSpell.words": [
+    "Chukwuma",
     "langchain",
     "llamaindex",
     "openai",
-    "Streamable"
+    "spliter",
+    "Streamable",
+    "textsplitters",
+    "vectorstore",
+    "vectorstores",
+    "Zikora"
   ]
 }
