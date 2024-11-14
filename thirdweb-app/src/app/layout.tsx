@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThirdwebProvider } from 'thirdweb/react';
+import { NavigationMenu } from '~/components/NavigationMenu';
+import { Separator } from '~/components/ui/separator';
+import { cn } from '~/lib/utils';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -10,15 +13,25 @@ export const metadata: Metadata = {
   description: 'Exploring the world of web3 with thirdweb and Next.js',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutProps = Readonly<{
   children: React.ReactNode;
-}>) {
+}>;
+
+export default function RootLayout(props: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ThirdwebProvider>{children}</ThirdwebProvider>
+    <html lang="en" className="dark">
+      <body
+        className={cn(
+          'mx-auto flex h-full w-full max-w-7xl flex-col p-4 pb-5',
+          inter.className,
+        )}
+      >
+        <ThirdwebProvider>
+          <NavigationMenu />
+          <Separator className="mt-2" />
+
+          {props.children}
+        </ThirdwebProvider>
       </body>
     </html>
   );
