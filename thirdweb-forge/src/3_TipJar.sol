@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-contract ForgeTipJar {
+import "@thirdweb-dev/contracts/extension/ContractMetadata.sol";
+
+contract ForgeTipJar is ContractMetadata {
     address payable owner;
 
     event TipReceived(address indexed sender, uint256 amount);
@@ -32,5 +34,22 @@ contract ForgeTipJar {
 
     function getBalance() public view onlyOwner returns (uint256) {
         return address(this).balance;
+    }
+
+    /**
+     *  This function returns who is authorized to set the metadata for your metadata.
+     *
+     *  As an EXAMPLE, we'll only allow the contract deployer to set the contract's metadata.
+     *
+     *  You MUST complete the body of this function to use the `ContractMetadata` extension.
+     */
+    function _canSetContractURI()
+        internal
+        view
+        virtual
+        override
+        returns (bool)
+    {
+        return msg.sender == owner;
     }
 }

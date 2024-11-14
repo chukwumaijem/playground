@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-contract ForgeMessageBoard {
+import "@thirdweb-dev/contracts/extension/ContractMetadata.sol";
+
+contract ForgeMessageBoard is ContractMetadata {
     address public owner;
 
     struct Message {
@@ -35,5 +37,22 @@ contract ForgeMessageBoard {
     function getMessage(uint256 index) public view returns (Message memory) {
         require(index < messages.length, "Message index out of bounds");
         return messages[index];
+    }
+
+    /**
+     *  This function returns who is authorized to set the metadata for your metadata.
+     *
+     *  As an EXAMPLE, we'll only allow the contract deployer to set the contract's metadata.
+     *
+     *  You MUST complete the body of this function to use the `ContractMetadata` extension.
+     */
+    function _canSetContractURI()
+        internal
+        view
+        virtual
+        override
+        returns (bool)
+    {
+        return msg.sender == owner;
     }
 }

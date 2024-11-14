@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-contract ForgeCoinFlip {
+import "@thirdweb-dev/contracts/extension/ContractMetadata.sol";
+
+contract ForgeCoinFlip is ContractMetadata {
+    address payable owner;
+
     enum CoinSide {
         Heads,
         Tails
@@ -17,6 +21,10 @@ contract ForgeCoinFlip {
         FlipResult result
     );
 
+    constructor() {
+        owner = payable(msg.sender);
+    }
+
     function flip(uint256 choice) public {
         require(choice == 0 || choice == 1, "Invalid coin side");
 
@@ -29,5 +37,22 @@ contract ForgeCoinFlip {
             : FlipResult.LOSE;
 
         emit CoinFlipResult(msg.sender, CoinSide(choice), flipResult);
+    }
+
+    /**
+     *  This function returns who is authorized to set the metadata for your metadata.
+     *
+     *  As an EXAMPLE, we'll only allow the contract deployer to set the contract's metadata.
+     *
+     *  You MUST complete the body of this function to use the `ContractMetadata` extension.
+     */
+    function _canSetContractURI()
+        internal
+        view
+        virtual
+        override
+        returns (bool)
+    {
+        return msg.sender == owner;
     }
 }

@@ -9,8 +9,8 @@
     "@thirdweb-dev/contracts": "^3"
   },
   "scripts": {
-    "build": "npx thirdweb detect -k $(cat .env | grep THIRD_WEB_SECRET_KEY | cut -d '=' -f2)",
+    "build": "npx thirdweb@5.67.0 detect -k $(cat .env | grep THIRD_WEB_SECRET_KEY | cut -d '=' -f2)",
     "deploy": "npx thirdweb@5.67.0 deploy -k $(cat .env | grep THIRD_WEB_SECRET_KEY | cut -d '=' -f2)",
-    "release": "npx thirdweb release -k $(cat .env | grep THIRD_WEB_SECRET_KEY | cut -d '=' -f2)"
+    "release": "npx thirdweb@5.67.0 publish -k $(cat .env | grep THIRD_WEB_SECRET_KEY | cut -d '=' -f2)"
   }
 }
