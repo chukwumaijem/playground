@@ -14,7 +14,7 @@ export function Hero() {
               thirdweb
             </Link>
           </h1>
-          <p className="mt-8 text-pretty text-lg font-medium sm:text-xl/8">
+          <p className="mt-8 text-pretty font-medium sm:text-lg">
             Exploring the world of web3 with thirdweb and Next.js.
           </p>
         </div>

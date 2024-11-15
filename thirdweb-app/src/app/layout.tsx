@@ -28,7 +28,7 @@ export default function RootLayout(props: RootLayoutProps) {
       >
         <ThirdwebProvider>
           <NavigationMenu />
-          <Separator className="mt-2" />
+          <Separator className="mt-4" />
 
           {props.children}
         </ThirdwebProvider>

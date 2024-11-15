@@ -1,6 +1,6 @@
 'use client';
 
-import { Contracts } from '~/components/Contracts';
+import { Contracts } from '~/app/components/Contracts';
 import { Hero } from '~/components/Hero';
 
 export default function Home() {
