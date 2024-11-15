@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
 import { ContractCard } from '~/app/components/ContractCard';
-import { ContractSkeleton } from '~/app/components/ContractSkeleton';
 import { customContracts, preBuiltContracts } from '~/constants/contracts';
 
 export function Contracts() {
@@ -14,9 +12,11 @@ export function Contracts() {
         <p className="mb-1 text-left text-xl font-medium">Prebuilt Contracts</p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {preBuiltContracts.map((contract) => (
-            <Suspense fallback={<ContractSkeleton />} key={contract.path}>
-              <ContractCard contract={contract.contract} href={contract.href} />
-            </Suspense>
+            <ContractCard
+              contract={contract.contract}
+              href={contract.href}
+              key={contract.path}
+            />
           ))}
         </div>
       </div>
@@ -25,9 +25,11 @@ export function Contracts() {
         <p className="mb-1 text-left text-xl font-medium">Custom Contracts</p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {customContracts.map((contract) => (
-            <Suspense fallback={<ContractSkeleton />} key={contract.path}>
-              <ContractCard contract={contract.contract} href={contract.href} />
-            </Suspense>
+            <ContractCard
+              contract={contract.contract}
+              href={contract.href}
+              key={contract.path}
+            />
           ))}
         </div>
       </div>
