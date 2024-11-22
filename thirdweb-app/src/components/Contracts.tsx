@@ -1,4 +1,4 @@
-import { ContractCard } from '~/app/components/ContractCard';
+import { ContractCard } from '~/components/ContractCard';
 import { customContracts, preBuiltContracts } from '~/constants/contracts';
 
 export function Contracts() {
