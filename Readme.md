@@ -19,8 +19,18 @@ Content:
 - - enable/disable apache modules and sites
 - - reload apache server
 
-## 03 - Webmin Ubuntu
+## 03 - Caddy Server
 
-## 04 - Virtualmin Ubuntu
+Host static website with Caddy in an Ubuntu VM.
 
-## 05 - Virtualmin Clustering
+Content:
+
+- Use vagrant to provision two Ubuntu VMs
+- Use docker provisioning to
+- - install and configure Caddy server in the Vms
+- - copy website files to the VMs
+- - deploy a docker stack with Caddy and two other docker images
+- Caddy serves the static websites from the marketing folder
+- Caddy serves the admin and client websites from the docker images
+- Caddy manages on demand TLS certificates for custom domains
+- Caddy manages local TLS certificates for websites including wildcard domains
