@@ -1,0 +1,47 @@
+services:
+  caddy:
+    image: caddy:2.8
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./marketing:/srv/marketing
+      - caddy_data:/data
+      - caddy_config:/config
+    env_file:
+      - ./docker/caddy/.env
+
+  database:
+    image: ghcr.io/tursodatabase/libsql-server:508274d
+    user: ${USER_ID}:${GROUP_ID}
+    ports:
+      - 8080:8080
+    volumes:
+      - ./docker/database/data:/var/lib/sqld
+
+  admin:
+    image: admin:v0.0.0
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - database
+
+  client:
+    image: client:v0.0.0
+    volumes:
+      - ./docker/client/cache:/app/.next/cache
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - database
+
+volumes:
+  caddy_data:
+  caddy_config:
