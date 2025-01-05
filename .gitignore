@@ -1,2 +1,4 @@
 .vagrant
 02_apache_custom_login/public
+03_caddy_test/public
+.env
