@@ -25,9 +25,9 @@ Host static website with Caddy in an Ubuntu VM.
 
 Content:
 
-- Use vagrant to provision two Ubuntu VMs
+- Use vagrant to provision an Ubuntu VM
 - Use docker provisioning to
-- - install and configure Caddy server in the Vms
+- - install and configure Caddy server in the VM
 - - copy website files to the VMs
 - - deploy a docker stack with Caddy and two other docker images
 - Caddy serves the static websites from the marketing folder
