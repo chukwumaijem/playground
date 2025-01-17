@@ -1,7 +1,7 @@
 const Hyperswarm = require('hyperswarm');
 const Hypercore = require('hypercore');
 const crypto = require('crypto');
-const { writerReaderTopic, writerReaderBasePath } = require('./helpers');
+const { writerReaderTopic, writerReaderBasePath } = require('../helpers');
 
 const corePath = writerReaderBasePath + (process.argv[2] || 'reader-storage');
 async function main() {

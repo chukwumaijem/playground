@@ -4,7 +4,7 @@ const fs = require('fs');
 const writerReaderBasePath = './data/1_hypercore/writer-reader/';
 const writerReaderTopic = 'writer-reader-group';
 
-const messagingBasePath = './data/1_hypercore/messaging/';
+const messagingBasePath = './data/2_hyperdht/messaging/';
 const messagingTopic = 'messaging-group';
 
 function getKeyPair(feedDir) {

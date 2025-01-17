@@ -3,7 +3,7 @@ const Hyperswarm = require('hyperswarm');
 const crypto = require('crypto');
 const DHT = require('hyperdht');
 const fs = require('fs');
-const { messagingBasePath, messagingTopic, getKeyPair } = require('./helpers');
+const { messagingBasePath, messagingTopic, getKeyPair } = require('../helpers');
 
 const uname = process.argv[2]; // get username
 if (!uname) {
@@ -17,7 +17,6 @@ const swarm = new Hyperswarm({ keyPair });
 
 async function main() {
   let feed = null;
-  let pFeed = null;
   if (feed) {
     await feed.close().catch((err) => {
       console.error('Error closing user core:', err);
@@ -30,20 +29,7 @@ async function main() {
   swarm.on('connection', async (conn, peerInfo) => {
     console.log('New peer connected');
     feed.replicate(conn);
-
-    if (pFeed) {
-      await pFeed.close().catch((err) => {
-        console.error('Error closing peer core:', err);
-      });
-    }
-
-    const peerId = peerInfo.publicKey.toString('hex');
-    pFeed = new Hypercore(`${messagingBasePath}/${peerId}-feed`, peerId);
-    await pFeed.ready();
-    pFeed.replicate(conn);
-    await pFeed.update();
-
-    readPeerMessages();
+    managePeerFeedAndMessages(conn, peerInfo);
   });
 
   const topic = crypto.createHash('sha256').update(messagingTopic).digest();
@@ -63,11 +49,24 @@ async function main() {
     });
   }
 
-  async function readPeerMessages() {
+  async function managePeerFeedAndMessages(conn, peerInfo) {
     let pStream = null;
-    if (pStream) {
-      pStream.destroy();
+    let pFeed = null;
+
+    if (pFeed) {
+      await pFeed.close().catch((err) => {
+        console.error('Error closing peer core:', err);
+      });
     }
+    if (pStream) {
+      await pStream.destroy();
+    }
+
+    const peerId = peerInfo.publicKey.toString('hex');
+    pFeed = new Hypercore(`${feedDir}/${peerId}-feed`, peerId);
+    await pFeed.ready();
+    pFeed.replicate(conn);
+    await pFeed.update();
 
     try {
       pStream = pFeed.createReadStream({ live: true });
