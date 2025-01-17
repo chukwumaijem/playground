@@ -7,6 +7,8 @@ const writerReaderTopic = 'writer-reader-group';
 const messagingBasePath = './data/2_hyperdht/messaging/';
 const messagingTopic = 'messaging-group';
 
+const todoBasePath = './data/3_hyperbee/todo/';
+
 function getKeyPair(feedDir) {
   const keyPairPath = `${feedDir}/keys`;
   const publicKeyFile = `${keyPairPath}/public.key`;
@@ -30,5 +32,6 @@ module.exports = {
   messagingTopic,
   writerReaderBasePath,
   writerReaderTopic,
+  todoBasePath,
   getKeyPair,
 };
