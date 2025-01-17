@@ -21,3 +21,29 @@ A peer-to-peer group chat system using Hypercore's networking capabilities.
 ## Improvements
 
 - Don't read messages read previously after reconnection.
+
+## How to Run
+
+1. Install Dependencies
+
+```bash
+npm install
+```
+
+2. Open more than one terminal. From the root directory of the project, run
+
+- In Terminal 1, Run
+
+```bash
+node 2_hypercore/messaging.js <username>
+```
+
+- In Terminal 2, Run
+
+```bash
+node 2_hypercore/messaging.js <username>
+```
+
+- Run in as many terminals as you want.
+
+3. You can type messages in one terminal and they will appear in the other terminals once they are connected.
