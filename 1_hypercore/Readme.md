@@ -27,3 +27,7 @@ A peer-to-peer chat system using Hypercore's networking capabilities.
 - Working with feed creation and management
 - Implementing peer discovery and replication
 - Handling real-time updates and message synchronization
+
+## Improvements
+
+- Don't read messages read previously after reconnection.
