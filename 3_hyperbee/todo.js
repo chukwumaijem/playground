@@ -1,7 +1,7 @@
 const Hyperbee = require('hyperbee');
 const Hypercore = require('hypercore');
 const cli = require('./cli');
-const { todoBasePath } = require('../helpers');
+const { todoBasePath } = require('../helpers/utils');
 
 const core = new Hypercore(todoBasePath);
 const db = new Hyperbee(core);

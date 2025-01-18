@@ -9,6 +9,8 @@ const messagingTopic = 'messaging-group';
 
 const todoBasePath = './data/3_hyperbee/todo/';
 
+const rpcTopic = 'rpc-group';
+
 function getKeyPair(feedDir) {
   const keyPairPath = `${feedDir}/keys`;
   const publicKeyFile = `${keyPairPath}/public.key`;
@@ -33,5 +35,6 @@ module.exports = {
   writerReaderBasePath,
   writerReaderTopic,
   todoBasePath,
+  rpcTopic,
   getKeyPair,
 };

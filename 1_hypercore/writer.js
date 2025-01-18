@@ -5,7 +5,7 @@ const {
   writerReaderTopic,
   writerReaderBasePath,
   getKeyPair,
-} = require('../helpers');
+} = require('../helpers/utils');
 
 const corePath = writerReaderBasePath + (process.argv[2] || 'writer-storage');
 async function main() {

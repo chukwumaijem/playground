@@ -3,7 +3,11 @@ const Hyperswarm = require('hyperswarm');
 const crypto = require('crypto');
 const DHT = require('hyperdht');
 const fs = require('fs');
-const { messagingBasePath, messagingTopic, getKeyPair } = require('../helpers');
+const {
+  messagingBasePath,
+  messagingTopic,
+  getKeyPair,
+} = require('../helpers/utils');
 
 const uname = process.argv[2]; // get username
 if (!uname) {

@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hyperswarm/rpc": "^3.3.2",
+    "dotenv": "^16.4.7",
+    "hp-rpc-cli": "^0.0.5",
     "hyperbee": "^2.21.2",
     "hypercore": "^10.38.2",
     "hyperswarm": "^4.8.4"
