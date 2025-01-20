@@ -15,6 +15,11 @@
     "hp-rpc-cli": "^0.0.5",
     "hyperbee": "^2.21.2",
     "hypercore": "^10.38.2",
-    "hyperswarm": "^4.8.4"
+    "hyperswarm": "^4.8.4",
+    "lib-wallet": "github:tetherto/lib-wallet#v0.0.1"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.18"
   }
 }

@@ -11,6 +11,8 @@ const todoBasePath = './data/3_hyperbee/todo/';
 
 const rpcTopic = 'rpc-group';
 
+const tetherBasePath = './data/6_tether_wdk/';
+
 function getKeyPair(feedDir) {
   const keyPairPath = `${feedDir}/keys`;
   const publicKeyFile = `${keyPairPath}/public.key`;
@@ -36,5 +38,6 @@ module.exports = {
   writerReaderTopic,
   todoBasePath,
   rpcTopic,
+  tetherBasePath,
   getKeyPair,
 };
