@@ -1,0 +1,42 @@
+{
+  "name": "eleventy_pear_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "_site/index.html",
+  "type": "module",
+  "pear": {
+    "name": "eleventy_pear_app",
+    "type": "desktop",
+    "gui": {
+      "backgroundColor": "#1F2430",
+      "height": "540",
+      "width": "720"
+    }
+  },
+  "scripts": {
+    "11ty": "npx @11ty/eleventy",
+    "build": "npm run remove && npm run 11ty && npm run tailwind",
+    "dev": "concurrently \"npm run 11ty -- --serve --incremental\" \"npm run tailwind -- --watch\" \"npm run dev:pear\"",
+    "dev:pear": "pear run -d _site",
+    "remove": "rm -rf _site",
+    "postinstall": "npm run build",
+    "tailwind": "npx tailwindcss -i ./src/style/global.css -o ./_site/css/global.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "autoprefixer": "^10.0.1",
+    "brittle": "^3.0.0",
+    "concurrently": "^8.2.2",
+    "pear-interface": "^1.0.0",
+    "postcss": "^8.4.36",
+    "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "b4a": "^1.6.7",
+    "hypercore-crypto": "^3.4.2",
+    "hyperswarm": "^4.8.4"
+  }
+}
