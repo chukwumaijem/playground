@@ -17,4 +17,4 @@ Example taken from the [Pear documentation](https://docs.pears.com/guides/making
 ### Eleventy
 
 Same as the Default version, but using the Eleventy framework.
-Issue: This version can only run one instance of the app.
+Issue: This version can only run one instance of the app with -d flag. To start another instance, `pear run -s <set storage path> _site`
