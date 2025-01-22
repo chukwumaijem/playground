@@ -79,3 +79,31 @@ View Bitcoin transaction history
 ```bash
 .history btc
 ```
+
+## AI Agent
+
+The AI agent is a simple web application that uses the Tether Wallet Library to interact with the wallet. It allows you to record your voice and transcribe it into a JSON format. The JSON is then parsed and used to call the appropriate wallet methods.
+
+An extra prerequisite is needed to run the AI agent. You need to have a local instance of Whisper and Ollama running.
+
+To run the AI agent, follow these steps:
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start the AI agent:
+
+```bash
+npm run dev
+```
+
+3. Open the AI agent in your browser:
+
+```bash
+http://localhost:8080
+```
+
+4. Follow the on screen instructions to record your voice and transcribe it into a JSON format.
