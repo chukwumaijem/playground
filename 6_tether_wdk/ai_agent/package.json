@@ -1,0 +1,32 @@
+{
+  "name": "ai_agent",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "scripts": {
+    "dev": "vite",
+    "build": "npx webpack --config webpack.config.js",
+    "lint": "standard --fix"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "events": "^3.3.0",
+    "http-browserify": "^1.7.0",
+    "https-browserify": "^1.0.0",
+    "lib-wallet": "github:tetherto/lib-wallet#v0.0.1",
+    "stream-browserify": "^3.0.0",
+    "url": "^0.11.4"
+  },
+  "standard": {
+    "ignore": [
+      "/dist/*.js"
+    ]
+  },
+  "devDependencies": {
+    "vite": "^5.1.4",
+    "webpack-cli": "^6.0.1"
+  }
+}
