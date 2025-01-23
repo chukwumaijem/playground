@@ -51,6 +51,7 @@ async function joinChatRoom(e) {
 
 async function joinSwarm(topicBuffer) {
   document.querySelector('#setup').classList.add('hidden');
+  document.querySelector('#chat-container').classList.remove('hidden');
   document.querySelector('#loading').classList.remove('hidden');
 
   // Join the swarm with the topic. Setting both client/server to true means that this app can act as both.
