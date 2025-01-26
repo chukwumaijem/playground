@@ -37,9 +37,11 @@ export function TokenBalance(props: TokenBalanceProps) {
     <Card className="group h-full w-full overflow-hidden">
       <CardHeader className="flex h-full flex-grow flex-col justify-center border-t border-border !p-4">
         <CardTitle className="line-clamp-1">Your Balance</CardTitle>
-        {!address && <p>Connect your wallet to see your balance</p>}
+        {!address && isPending && <Skeleton className="h-4 w-full" />}
 
-        {address && isPending && <Skeleton className="h-4 w-full" />}
+        {!address && !isPending && (
+          <p>Connect your wallet to see your balance</p>
+        )}
 
         {address && !isPending && tokens && (
           <CardDescription className="flex-grow">

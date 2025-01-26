@@ -49,7 +49,7 @@ const data = [
     path: 'chuk-profile-status',
   },
 ];
-const chain = defineChain(2442);
+export const chain = defineChain(2442);
 
 export const preBuiltContracts = data.slice(0, 4).map((item) => {
   return {

@@ -1,5 +1,6 @@
 import { ContractHeroCard } from '~/components/ContractHeroCard';
 import { preBuiltContracts } from '~/constants/contracts';
+import { ClaimNFT } from './components/ClaimNFT';
 
 const contract = preBuiltContracts[1].contract;
 export default function ERC721NFT() {
@@ -8,7 +9,7 @@ export default function ERC721NFT() {
       <ContractHeroCard contract={contract} />
 
       <div className="mt-5 grid w-full grid-cols-1 justify-center gap-4 md:grid-cols-3">
-        Contract Showcase
+        <ClaimNFT contract={contract} />
       </div>
     </div>
   );
