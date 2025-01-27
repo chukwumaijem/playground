@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+  # Define the base box
+  config.vm.box = "ubuntu/jammy64" # ubuntu/lunar64
+
+  # Install docker and pull images
+  config.vm.provision "docker" do |d|
+    d.pull_images "caddy:2.8"
+  end
+
+  # Sync data folder to the VM
+  config.vm.synced_folder "../data/colors-app/", "/home/vagrant/colors-app"
+  config.vm.synced_folder "./config/nomad/", "/home/vagrant/nomad"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    # Load Docker image  from data folder
+    docker load < /home/vagrant/colors-app/colors-app.tar
+
+    # Install Nomad
+    wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo apt update && sudo apt install nomad
+
+    nomad agent -config /home/vagrant/nomad/agents/combined.hcl
+  SHELL
+
+  # Access the server locally with HTTPS
+  config.vm.network "private_network", ip: "192.168.56.6"
+end
