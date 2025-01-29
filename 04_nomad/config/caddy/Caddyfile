@@ -1,16 +1,4 @@
-{
-  email email@example.com
-  local_certs
-}
-
-# Main domain and subdomains
-test.local {
-  encode zstd gzip
-
-  # Route all api requests from the marketing app to the admin app
-  # reverse_proxy /api/* admin:3000
-
-  # Default behavior
-	file_server
-  tls internal
+:80 {
+  root * /usr/share/caddy
+  file_server
 }

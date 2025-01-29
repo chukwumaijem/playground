@@ -3,4 +3,9 @@
 03_caddy_test/public
 .env
 node_modules/
-data/
+/data
+
+04_nomad/config/caddy/*
+!04_nomad/config/caddy/Caddyfile
+!04_nomad/config/caddy/data/.gitkeep
+!04_nomad/config/caddy/config/.gitkeep
