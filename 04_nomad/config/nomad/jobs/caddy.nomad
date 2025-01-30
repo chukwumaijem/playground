@@ -4,18 +4,9 @@ job "caddy" {
   group "caddy" {
     count = 1
 
-    network {
-      mode = "host"
-
-      port "http" {
-        static = 80
-      }
-    }
-
     service {
       name     = "caddy-server"
       provider = "nomad"
-      port = "http"
     }
 
     volume "caddy_file" {
