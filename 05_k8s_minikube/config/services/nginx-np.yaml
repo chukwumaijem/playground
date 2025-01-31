@@ -7,7 +7,7 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      # nodePort: 30001
+      nodePort: 30010 # optional. If not specified, a random port will be assigned
   selector:
     app: nginx
     tier: frontend
@@ -17,7 +17,7 @@ spec:
 
 # Only needed because of the VM Setup
 # To access the service url from the host machine of the VM, run the following command
-# ssh -g -N -L 8080:192.168.49.2:31529 -i .vagrant/machines/default/virtualbox/private_key vagrant@192.168.56.6
+# ssh -g -N -L 8080:192.168.49.2:30010 -i .vagrant/machines/default/virtualbox/private_key vagrant@192.168.56.6
 # Then open the url http://localhost:8080 in the browser
 
-# 192.168.49.2:31529 # this is the url returned by minikube service
+# 192.168.49.2:30010 # this is the url returned by minikube service
