@@ -1,9 +1,8 @@
 Vagrant.configure("2") do |config|
-  # Define the base box
   config.vm.box = "ubuntu/jammy64"
 
   config.vm.provider "virtualbox" do |v|
-    vb.name = "k8s-minikube"
+    vb.name = "k8s-minikube-helm"
     v.memory = 2048
     v.cpus = 2
   end
@@ -32,15 +31,6 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.56.6"
 end
 
-# On VM start, run the following command to start the minikube cluster
-# ```bash minikube start```
-
-# To view the minikube dashboard, run the following command
-# ```bash minikube dashboard```
-
-
-# Only needed because of the VM Setup
-# Use the command below to proxy the kubernetes API server in the VM
-# kubectl proxy --address=0.0.0.0 --disable-filter=true
-# Then open the k8s dashboard at
-# http://192.168.56.6:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+# Idea is to convert the resources in the k8s-specifications repo to helm charts,
+# and then packages, sign, and install them using helm.
+# https://github.com/dockersamples/example-voting-app/tree/main/k8s-specifications
